@@ -16,8 +16,6 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 /**
- * // TODO: Document this
- *
  * @author Mircea.Markus@jboss.com
  * @since 4.2
  */
@@ -29,6 +27,7 @@ public class ContinuousQueryLocalApiTest extends SingleCacheManagerTest {
       + "query allCompanies() \n"
       + "    stockInfo : StockInfo() \n"
       + "end\n";
+   private static final String LIST_STOCK_Q = "";
 
    @Override
    protected EmbeddedCacheManager createCacheManager() throws Exception {
@@ -45,6 +44,7 @@ public class ContinuousQueryLocalApiTest extends SingleCacheManagerTest {
    }
 
    private void defineAndRunLocalQuery(boolean local) {
+
       ContinuousQueryManager cm = new ContinuousQueryManager(cacheManager, true);
       QueryDefinition qDef = new QueryDefinition("allCompanies", ALL_STOCKS_Q, Collections.singletonList("stockInfo"));
       cm.defineQuery(qDef);
@@ -96,6 +96,10 @@ public class ContinuousQueryLocalApiTest extends SingleCacheManagerTest {
          e.printStackTrace();
       }
       cm.resetData();
+   }
+
+   public EmbeddedCacheManager getCacheManager() {
+      return cacheManager;
    }
 
    public static class MyQueryListener implements ReplayResultSetListener {

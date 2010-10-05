@@ -86,6 +86,5 @@ public class ClusteredQueryListener implements ReplayResultSetListener {
       } else {
          iAmActive = false;
       }
-      System.out.println("iAmActive = " + iAmActive);
    }
 }

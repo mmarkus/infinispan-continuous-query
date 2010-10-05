@@ -1,20 +1,5 @@
 <cq-definitions>
 
-   <continuous-query name="listStock" defaultResultSetListener="org.infinispan.continuousquery.demo.CompanyResultSetListener">
-      <query>
-      <![CDATA[
-         import org.infinispan.continuousquery.demo.*
-         query listStock(String $profile)
-            stockInfo : StockInfo(profile == $profile)
-         end
-      ]]>
-      </query>
-      <output>
-         <item>stockInfo</item>
-      </output>
-   </continuous-query>   
-
-   <!-- todo rename in transaction watchdog -->
    <continuous-query name="tradeWatchdog" defaultResultSetListener="org.infinispan.continuousquery.demo.StockInfoResultSetListener">
       <query>
        <![CDATA[

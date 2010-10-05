@@ -37,6 +37,10 @@ public class ContinuousQueryManager {
       }
    }
 
+   public ContinuousQueryManager(EmbeddedCacheManager cacheManager) {
+      this(cacheManager, true);
+   }
+
    private void prepareCache(Cache cache) {
       InterceptorChain chain = getInterceptorChain(cache);
       ContinuousQueryInterceptor interceptor;

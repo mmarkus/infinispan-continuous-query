@@ -24,7 +24,7 @@ public class StockInfoResultSetListener extends ResultSetListenerSupport {
       NumberFormat nf = new DecimalFormat();
       if (difference > 0) {
          String diffStr = nf.format(difference);
-         System.out.println("Not bad! Our stock on " + trade.getCompany() + " is up with " + diffStr + " unit(s)!");
+         System.out.println("Not bad! Our stock on " + trade.getCompany() + " is up by " + diffStr + " unit(s)!");
       } else if (difference < 0) {
          System.out.println(trade + " is down with " + (-difference));
       } else {
@@ -34,6 +34,6 @@ public class StockInfoResultSetListener extends ResultSetListenerSupport {
 
    private void printWarningMessage(Trade trade, double difference) {
       NumberFormat nf = new DecimalFormat();
-      System.out.println(trade.getTrader().getName() + "'s transaction on " + trade.getCompany() + " went down " + nf.format(-difference) + ". This needs immediate attention!");
+      System.out.println(trade.getTrader().getName() + "'s transaction on " + trade.getCompany() + " went down " + nf.format(-difference) + "units. This needs immediate attention!");
    }
 }
