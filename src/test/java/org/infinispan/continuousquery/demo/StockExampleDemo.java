@@ -177,8 +177,7 @@ public class StockExampleDemo {
    }
 
    private static void defineQueries() {
-      String file = readInfo("Continuous 4" +
-            "query definitions file");
+      String file = readInfo("Path to query definitions file");
       cqm.defineQueries(file);
       System.out.println("Queries successfully defined!");
    }

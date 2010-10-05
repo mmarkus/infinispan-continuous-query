@@ -15,6 +15,7 @@
       </output>
    </continuous-query>   
 
+   <!-- todo rename in transaction watchdog -->
    <continuous-query name="traderTransactions" defaultResultSetListener="org.infinispan.continuousquery.demo.StockInfoResultSetListener">
       <query>
        <![CDATA[
