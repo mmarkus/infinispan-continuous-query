@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<infinispan
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="urn:infinispan:config:4.1 http://www.infinispan.org/schemas/infinispan-config-4.1.xsd"
+      xmlns="urn:infinispan:config:4.1">
+
+   <!-- *************************** -->
+   <!-- System-wide global settings -->
+   <!-- *************************** -->
+
+   <global>
+
+      <!-- Note that if these are left blank, defaults are used.  See the user guide for what these defaults are -->
+      <asyncListenerExecutor factory="org.infinispan.executors.DefaultExecutorFactory">
+         <properties>
+         	<property name="maxThreads" value="5"/>
+         	<property name="threadNamePrefix" value="AsyncListenerThread"/>
+         </properties>
+      </asyncListenerExecutor>
+
+      <asyncTransportExecutor factory="org.infinispan.executors.DefaultExecutorFactory">
+         <properties>
+         	<property name="maxThreads" value="25"/>
+         	<property name="threadNamePrefix" value="AsyncSerializationThread"/>
+         </properties>
+      </asyncTransportExecutor>
+
+      <evictionScheduledExecutor factory="org.infinispan.executors.DefaultScheduledExecutorFactory">
+         <properties>
+         	<property name="threadNamePrefix" value="EvictionThread"/>
+         </properties>
+      </evictionScheduledExecutor>
+
+      <replicationQueueScheduledExecutor factory="org.infinispan.executors.DefaultScheduledExecutorFactory">
+         <properties>
+         	<property name="threadNamePrefix" value="ReplicationQueueThread"/>
+         </properties>
+      </replicationQueueScheduledExecutor>
+
+      <globalJmxStatistics enabled="true" jmxDomain="infinispan"/>
+
+      <transport clusterName="infinispan-cluster" distributedSyncTimeout="50000" nodeName="cq-demo">
+         <properties>
+            <property name="configurationFile" value="/Users/mmarkus/code/ispn/branches/4.2.x/continuous-query/src/test/resources/jgroups-tcp.xml"/>
+         </properties>
+      </transport>
+
+      <serialization marshallerClass="org.infinispan.marshall.VersionAwareMarshaller" version="1.0"/>
+
+      <shutdown hookBehavior="DEFAULT"/>
+   </global>
+
+   <default>
+      <locking
+            isolationLevel="REPEATABLE_READ"
+            lockAcquisitionTimeout="20000"
+            writeSkewCheck="false"
+            concurrencyLevel="500"
+            useLockStriping="true"
+            />
+
+      <transaction
+            transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
+            syncRollbackPhase="false"
+            syncCommitPhase="false"
+            useEagerLocking="false"/>
+
+      <jmxStatistics enabled="false"/>
+      <lazyDeserialization enabled="false"/>
+      <invocationBatching enabled="true"/>
+
+      <clustering mode="replication">
+         <stateRetrieval timeout="20000" fetchInMemoryState="false" alwaysProvideInMemoryState="false"/>
+         <sync replTimeout="20000"/>
+      </clustering>
+
+   </default>
+
+
+   <namedCache name="asyncCache">
+      <clustering mode="replication">
+         <async asyncMarshalling="true"/>
+      </clustering>
+   </namedCache>
+
+</infinispan>

@@ -1,0 +1,36 @@
+<cq-definitions>
+
+   <continuous-query name="listedCompanies" defaultResultSetListener="org.infinispan.continuousquery.demo.CompanyResultSetListener">
+      <query>
+      <![CDATA[
+         import org.infinispan.continuousquery.demo.*
+
+         query listedCompanies(String $profile)
+            stockInfo : StockInfo(profile == $profile)
+         end
+      ]]>
+      </query>
+      <output>
+         <item>stockInfo</item>
+      </output>
+   </continuous-query>   
+
+   <continuous-query name="traderTransactions" defaultResultSetListener="org.infinispan.continuousquery.demo.StockInfoResultSetListener">
+      <query>
+       <![CDATA[
+             import org.infinispan.continuousquery.demo.*
+             query traderTransactions(String $traderName)
+                ourTrader: Trader(name == $traderName)
+                ourTrade : Trade(trader.name == ourTrader.name)
+                stockInfo : StockInfo(ourTrade.stockInfo.company == company)
+             end
+      ]]>
+      </query>
+      <output>
+         <item>ourTrader</item>
+         <item>ourTrade</item>
+         <item>stockInfo</item>
+      </output>
+   </continuous-query>
+
+</cq-definitions>
