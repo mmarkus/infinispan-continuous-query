@@ -41,7 +41,7 @@
 
       <transport clusterName="infinispan-cluster" distributedSyncTimeout="50000" nodeName="cq-demo">
          <properties>
-            <property name="configurationFile" value="/Users/mmarkus/code/ispn/branches/4.2.x/continuous-query/src/test/resources/jgroups-tcp.xml"/>
+            <property name="configurationFile" value="./jgroups-tcp.xml"/>
          </properties>
       </transport>
 
