@@ -1,6 +1,6 @@
-This project is is part of infinispan. Please refert o www.infinispan.org for more information
+This project is is part of infinispan. For more information refer to: http://community.jboss.org/wiki/ContinuousQuerywithInfinispan
 
 RUNNING THE DEMO
 1. Build: in <CQ_ROOT>: mvn clean assembly:assembly -Dmaven.test.skip.exec=true
 2. start instances <CQ_ROOT>: ./demo/demo.sh <node_count> <trader_name>
-Important: currently demo.sh is hardcoed to run all nodes on the local machine 
+Important: currently demo.sh is hardcoded to run all nodes on the local machine
