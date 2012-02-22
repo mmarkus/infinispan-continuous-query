@@ -29,13 +29,13 @@
       <dependency>
          <groupId>org.infinispan</groupId>
          <artifactId>infinispan-core</artifactId>
-         <version>4.2.0.ALPHA4</version>
+         <version>4.2.0.FINAL</version>
       </dependency>
 
       <dependency>
          <groupId>org.infinispan</groupId>
          <artifactId>infinispan-core</artifactId>
-         <version>4.2.0-SNAPSHOT</version>
+         <version>4.2.0.FINAL</version>
          <type>test-jar</type>
          <!--<scope>test</scope>-->
       </dependency>
@@ -192,5 +192,13 @@
       </plugins>
       <finalName>${artifactId}</finalName>
    </build>
+   
+    <repositories>
+      <!-- basic JBoss repository -->
+      <repository>
+         <id>jboss-public-repository-group</id>
+         <url>http://repository.jboss.org/nexus/content/groups/public-jboss</url>
+      </repository>
+   </repositories>
 
 </project>
